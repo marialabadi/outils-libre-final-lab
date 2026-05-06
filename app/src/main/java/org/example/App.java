@@ -8,18 +8,8 @@ public class App {
                               List<Integer> quantities,
                               String customerType,
                               String discountCode) {
-        double total = 0;
-        for (int i = 0; i < prices.size(); i++) {
-            total += prices.get(i) * quantities.get(i);
-        }
-        // discount
-        if (discountCode.equals("SAVE10")) total = total - total * 0.10;
-        if (discountCode.equals("SAVE20")) total = total - total * 0.20;
-        // VIP
-        if (customerType.equals("VIP")) total = total - total * 0.05;
-        // tax
-        total = total + total * 0.19;
-        return total;
+        PricingEngine engine = new PricingEngine();
+        return engine.calculate(prices, quantities, customerType, discountCode);
     }
 
     public static void main(String[] args) {
